@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+*{
+   /* background-color: #24252A;*/
+    /*background-color: #A096D3;*/
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+li, a, button{
+    font-family: "Montsserat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #f1eded;
+    text-decoration: none;
+}
+
+header{
+    background-color: #24252A;;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo{
+    cursor: pointer;
+    height: 60px;
+    margin-right: auto;
+}
+
+.nav__links{
+    list-style: none;
+}
+
+.nav__links li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav__links li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover{
+    color: #877fb8;
+}
+
+button{
+    padding: 9px 25px;
+    background-color: #A096D3;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover{
+    background-color:#877fb8;
+}
+
+*,
+*:before,
+*:after{
+    box-sizing: border-box;
+}
+
+.logo-footer{
+    height: 60px;
+}
+body{
+    font-family: "Montsserat", sans-serif;
+    margin: 0;
+    display: grid;
+    font-size: 14px;
+}
+
+.footer{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 50px;
+    color: #fff;
+    background: #262626;
+}
+
+.footer > *{
+    flex: 1 100%;
+}
+
+.l-footer{
+    margin-right: 1.25em;
+    margin-bottom: 2em;
+}
+h2{
+    font-weight: 900;
+    font-size: 16px;
+}
+.footer ul{
+    list-style: none;
+    padding-left: 0;
+}
+.footer li{
+    line-height: 2em;
+}
+.footer a{
+    text-decoration: none;
+}
+
+.r-footer{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.r-footer > *{
+    flex: 1 50%;
+    margin-right: 1.25em;
+}
+.box a{
+    text-decoration: none;
+    color: #999;
+}
+.h-box{
+    column-count: 2;
+    column-gap: 1.25em;
+}
+.b-footer{
+    text-align: center;
+    color: #999;
+    padding-top: 50px;
+}
+.l-footer p{
+    padding-right: 20%;
+    color: #999;
+}
+
+@media screen and (min-width:600px){
+    .r-footer > *{
+        flex: 1;
+    }
+    .features{
+        flex-grow: 2;
+    }
+    .l-footer{
+        flex: 1 0px;
+    }
+    .r-footer{
+        flex: 2 0px;
+    }
+}
+.footer li a{
+    transition: all 0.3s ease 0s;
+}
+
+.footer li a:hover{
+    color: #877fb8;
+}

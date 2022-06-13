@@ -47,11 +47,20 @@ header{
     color: #877fb8;
 }
 
-button{
+.cta button{
     padding: 9px 25px;
     background-color: #A096D3;
     border: none;
     border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links button{
+    padding: 9px 25px;
+    background-color: #24252A;
+    border-radius: 50px;
+    border: none;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
@@ -75,6 +84,8 @@ body{
     display: grid;
     font-size: 14px;
 }
+
+/* FOOTER */
 
 .footer{
     display: -webkit-flex;

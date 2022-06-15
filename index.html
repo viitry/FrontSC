@@ -6,6 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
     </head>
+    <!--<?php
+if(isset($_POST['logout']))
+{
+    unset($_COOKIE['login']);
+    unset($_COOKIE['password']);
+    setcookie('login', '', -1);
+    setcookie('password', '', -1);
+    $boule = true;
+}
+?-->
     <body>
         <!-- Header -->
         <header>
@@ -14,12 +24,74 @@
             <nav>
                 <ul class="nav__links">
                     <li><a href="#">Telechargement</a></li>
-                    <li><button href="#">Connexion</button></li>
-                    <li><button href="#">Inscription</button></li>    
+                    <li><button id="show-login" href="#">Connexion</button></li>
+                    <li><button id="show-signup"href="#">Inscription</button></li>    
                 </ul>
             </nav>
             <a class="cta" href="#"><button>Contact</button></a>
         </header>
+        <!-- POPUP LOGIN -->
+        <div class="popup">
+            <div class="close-btn">&times;</div>
+            <div class="form">
+                <h2>Log in</h2>
+                <div class="form-element">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Adresse e-mail" name="login1" required> <!--value="<?= $var_login ?>"-->
+                </div>
+                <div class="form-element">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" placeholder="Votre mot de passe" name="password1" required>
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <div class="form-element" name="connect">
+                    <button>Sign in</button>
+                    <!-- <?php
+				if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1 || $err==2)
+                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                } -->
+                </div>
+                <div class="form-element">
+                    <a href="#">Mot de passe oublie ?</a>
+                </div>
+            </div>
+        </div>
+        <!-- POPUP INSCRIPTION-->
+        <div class="popup2">
+            <div class="close-btn">&times;</div>
+            <div class="form">
+                <h2>Inscription</h2>
+                <div class="form-element">
+                    <label for="prenom">Prenom</label>
+                    <input type="text" id="prenom" placeholder="Votre prenom" name="prenom" required> <!--value="<?= $var_prenom ?>"-->
+                </div>
+                <div class="form-element">
+                    <label for="nom">Nom de famille</label>
+                    <input type="text" id="nom" placeholder="Votre nom de famille" name="nom" required> <!--value="<?= $var_nom ?>"-->
+                </div>
+                <div class="form-element">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Adresse e-mail" name="login" required> <!--value="<?= $var_log ?>"-->
+                </div>
+                <div class="form-element">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" placeholder="Mot de passe" name="password" required><!--  -->
+                </div>
+                <div class="form-element">
+                    <label for="password">Repeter Mot de passe</label>
+                    <input type="password" id="password" placeholder="Mot de passe" name="confirm_password" required><!--  -->
+                </div>
+                <div class="form-element">
+                    <button>Creer</button>
+                </div>
+            </div>
+        </div>
+         <!-- nom, prenom, email, confirm email, mdp confirm mdp -->
         <h1>Description de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de
             SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de
             SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de SlashCleanDescription de
@@ -69,11 +141,11 @@
                     </ul>
                 </li>     
             </ul>
-            
             <div class="b-footer">
                 <p>All Right Reserver by SlashClean</p>
             </div>
         </footer>
-   </body>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
         
 </html>

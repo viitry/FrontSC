@@ -1,13 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
 
 *{
-   /* background-color: #24252A;*/
+    /*background-color: #24252A;*/
     /*background-color: #A096D3;*/
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+.main_up{
 
+    height: 100%;
+    /*background-color: green;*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.screens{
+    padding-top: 4%;
+    width: 50%;
+    height: 100%;
+    /*background-color: red;*/
+}
 li, a, button{
     font-family: "Montsserat", sans-serif;
     font-weight: 500;

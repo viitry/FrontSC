@@ -1,14 +1,10 @@
 <?php
-function join_database()
+function join_database($param)
 {
-    $json = file_get_contents("database.json");
-    $var = json_decode($json);
-    $GLOBALS['Database'] = new mysqli($var->db_url, $var->db_login, $var->db_password, $var->db_name);
     global $Database;
-    
-    if ($Database->connect_error) {
-	die("Connection failed: " . $Database->connect_error);
-    }
+    $obj = json_decode(file_get_contents($param));
+    $Database = new mysqli($obj->db_url, $obj->db_login, $obj->db_password, $obj->db_name, 3306);
+    register_shutdown_function('mysqli_close', $Database); 
 }
 
 function select_fields($table, $id = -1)
@@ -35,8 +31,9 @@ function select_fields($table, $id = -1)
 
 function insert_fields($table, $fields)
 {
+    echo "flag1";
     global $Database;
-
+    echo "flagx";
     if(!isset($Database))
 	return -1;
 
@@ -48,6 +45,7 @@ function insert_fields($table, $fields)
 	if($bool)
 
 	{
+        echo "flag3";
 		$string_key .= ",";
 		$string_value .= ",";
             }
@@ -55,8 +53,12 @@ function insert_fields($table, $fields)
 	$string_value .= "'" . $Database->real_escape_string($v) . "'";
 	$bool = true;
     }
+    echo "INSERT INTO $table ($string_key) VALUES ($string_value)";
     if($result = $Database->query("INSERT INTO $table ($string_key) VALUES ($string_value)"))
+    {
+    echo "flag4";
 	return (mysqli_insert_id($Database));
+    }
     else
 	return -1;
 }

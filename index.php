@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,14 +10,62 @@
         <link href="popup_log.css" rel="stylesheet">
     </head>
     <?php
+require_once("database.php");
+error_reporting(-1);
+ini_set('display_errors', 'On');
+
+join_database("database.json");
+$tab = select_fields("user");
+$new_bool = false;
+$detector = 0;
+$bool = true;
+$var_log = "";
+$var_mail ="";
+$var_phone = "";
+$var_login = "";
+$new_tab = select_fields("user");
+
+
 if(isset($_POST['logout']))
 {
-    unset($_COOKIE['login']);
+    unset($_COOKIE['mail']);
     unset($_COOKIE['password']);
-    setcookie('login', '', -1);
+    setcookie('mail', '', -1);
     setcookie('password', '', -1);
-    $boule = true;
-}?>
+}
+
+if(isset($_POST['connect'])){
+    $var_login = htmlentities($_POST["login1"]);
+    $new_user = array("mail" => htmlentities($_POST["login1"]), "password" => hash_hmac('md5', htmlentities($_POST["password1"]), 'secret'));
+	$new_tab = select_fields("user");
+
+    foreach($new_tab as $v)
+{
+    if($new_user["mail"] == $v["mail"] && hash_equals($v["password"], $new_user["password"]))
+    {
+	$new_bool = true;
+	setcookie("mail", $v["mail"]);
+	setcookie("password", $v["password"]);
+    header("Refresh:0");
+	echo "<p id='inscription'>Connexion reussi</p>";
+	break;
+    }
+
+    else if($new_user["mail"] == $v["mail"] && hash_equals($new_user["password"], $v["password"]) == false)
+    {
+	echo "<p class='error_gestion'> Mot de passe incorrect </p>";
+	$detector = 1;
+	break;
+    }
+}
+}
+
+
+/*if($new_bool == false && $detector == 0)
+{
+    echo "<p class='error_gestion'>Nom d'utilisateur ou mot de passe incorrect</p>";
+}*/
+?>
     <body>
         <!-- Header -->
         <header>
@@ -26,14 +73,25 @@ if(isset($_POST['logout']))
             <img class="logo" src="logo_white_large.png" alt="logo">
             <nav>
                 <ul class="nav__links">
-                    <li><a href="profile.php">Telechargement</a></li>
-                    <li><button id="show-login" href="#">Connexion</button></li>
-                    <li><button id="show-signup"href="#">Inscription</button></li>    
-                    <!-- connecte ... <li><button id="show-signup"href="profile.html">Mon Compte</button></li>  -->
+                    <?php if(empty($_COOKIE["mail"]))
+                    { ?>
+                        <li><button id="show-login" href="#">Connexion</button></li>
+                        <li><button id="show-signup"href="#">Inscription</button></li>    
+                    <?php } ?>
+                        <li><a href="profile.php"><button>Mon Compte</button></li> 
+                    <?php if(isset($_COOKIE["mail"]) && isset($_COOKIE["password"]))
+                    { ?>
+                        <form method="POST" action="<?=$_SERVER['REQUEST_URI']?>">
+                            <li><button id="" href="#" name="logout">Se deconnecter</button></li> 
+                        </ul>  
+                    <?php } ?>
+                        </form>
+        </form>
                 </ul>
             </nav>
             <a class="cta" href="#"><button>Contact</button></a>
         </header>
+
         <!-- POPUP LOGIN -->
         <div class="popup">
             <div class="close-btn">&times;</div>
@@ -42,7 +100,7 @@ if(isset($_POST['logout']))
                     <h2>Log in</h2>
                     <div class="form-element">
                         <label for="email">Email</label>
-                        <input type="text" id="email" placeholder="Adresse e-mail" name="login1" required> <!--value=""-->
+                        <input type="text" id="email" placeholder="Adresse e-mail" name="login1" required> 
                     </div>
                     <div class="form-element">
                         <label for="password">Mot de passe</label>
@@ -53,7 +111,9 @@ if(isset($_POST['logout']))
                         <label for="remember-me">Remember me</label>
                     </div>
                         <div class="form-element" name="connect">
-                        <button type="submit" name="connect" value="se connecter">Sign in</button>
+                        <form method="POST" >
+                            <button type="submit" name="connect" value="se connecter">Sign in</button>
+                        </form>
                      <?php
 				if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
@@ -108,7 +168,7 @@ if(isset($_POST['logout']))
         </div>
         <div class="container">
             <div class="children left">
-                <p>SlashClean est un gestionnaire de disque dur pour votre telephone !  <br>SlashClean vous permet de vous notifier lorsque vous n'avez pas utiliser une application depuis longtemps et vous permet de la supprimer en un seul clic.</p>
+                <p>SlashClean est un gestionnaire de disque dur pour votre telephone ! SlashClean vous permet de vous notifier lorsque vous n'avez pas utilise une application depuis longtemps et vous permet de la supprimer en un seul clic.</p>
             </div>
             <div class="children right">
                 <p>SlashClean en telechargement sur l'Appstore et GooglePlay !</p>

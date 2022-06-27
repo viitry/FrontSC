@@ -25,7 +25,7 @@ if (isset($_POST['add_user'])) {
 
     foreach($tab as $v)
 	{
-	    if($user["login"] == $v["login"]){
+	    if($user["pseudo"] == $v["pseudo"]){
 		$bool = false;
 	    echo "<p class='error_gestion'> Le login existe déjà </p>"; }
 	}
@@ -49,40 +49,19 @@ if (isset($_POST['add_user'])) {
 	{
 	    $new_id =  insert_fields("user", $user);
 	    $new_tab = select_fields("user", $new_id);
-	    /*setcookie("login", $new_tab[0]["login"]);
-	    setcookie("password", $new_tab[0]["password"]);*/
+	    setcookie("pseudo", $new_tab[0]["pseudo"]);
+	    setcookie("password", $new_tab[0]["password"]);
 		echo "<p id='inscription'> Inscription réussie ! </p>";
 	}
 }
 
-if(isset($_POST['connect'])){
-    $var_login = htmlentities($_POST["login1"]);
-    $new_user = array("login" => htmlentities($_POST["login1"]), "password" => hash_hmac('md5', htmlentities($_POST["password1"]), 'secret'));
-	$new_tab = select_fields("user");
 
-foreach($new_tab as $v)
+if(isset($_POST['logout']))
 {
-    if($new_user["login"] == $v["login"] && hash_equals($v["password"], $new_user["password"]))
-    {
-	$new_bool = true;
-	setcookie("login", $v["login"]);
-	setcookie("password", $v["password"]);
-	echo "<p id='inscription'>Connexion reussi</p>";
-	break;
-    }
-
-    else if($new_user["login"] == $v["login"] && hash_equals($new_user["password"], $v["password"]) == false)
-    {
-	echo "<p class='error_gestion'> Mot de passe incorrect </p>";
-	$detector = 1;
-	break;
-    }
-}
-
-if($new_bool == false && $detector == 0)
-{
-    echo "<p class='error_gestion'>Nom d'utilisateur ou mot de passe incorrect</p>";
-}
+    unset($_COOKIE['mail']);
+    unset($_COOKIE['password']);
+    setcookie('mail', '', -1);
+    setcookie('password', '', -1);
 }
 ?>
 <!DOCTYPE html>
@@ -100,16 +79,23 @@ if($new_bool == false && $detector == 0)
         <!-- Header -->
         <header>
             <!-- Logo -->
-            <img class="logo" src="logo_white_large.png" alt="logo">
+            <img class="logo" src="logo_white_large.png" alt="logo"/>
             <nav>
                 <ul class="nav__links">
-                    <li><a href="index.php">Telechargement</a></li>
-                    <li><button id="" href="#" name="logout">Se deconnecter</button></li>    
+                    <form method="POST" action="<?=$_SERVER['REQUEST_URI']?>">
+                        <li><a href="index.php"><button name="logout">Se deconnecter</button></a></li>   
+                    </form> 
                     <!-- connecte ... <li><button id="show-signup"href="profile.html">Mon Compte</button></li>  -->
                 </ul>
             </nav>
-            <a class="cta" href="#"><button>Contact</button></a>
+            <a class="cta" href="index.php"><button>Accueil</button></a>
         </header>
+        <div class="main">
+        <?php if(isset($_COOKIE["mail"]) && isset($_COOKIE["password"]))
+                    { ?>
+            <h2>Adresse email : <?= $_COOKIE['mail'] ?> </h2>
+            <?php } ?>
+        </div>
         <footer class="footer">
             <div class="l-footer">
                 <h1><img class="logo-footer" src="logo_white_large.png" alt=""></h1>

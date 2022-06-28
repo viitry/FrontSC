@@ -7,6 +7,23 @@ function join_database($param)
     register_shutdown_function('mysqli_close', $Database); 
 }
 
+function new_select_fields($field, $table){
+    global $Database;
+
+    if (!isset($Database))
+	return -1;
+
+    else{
+        if (!($result = $Database->query("SELECT $field FROM $table")))
+        
+        return -1;
+    }
+
+    $app = $result->fetch_all(MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    return($app);
+}
+
 function select_fields($table, $id = -1)
 {
     global $Database;

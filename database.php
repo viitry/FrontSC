@@ -48,9 +48,9 @@ function select_fields($table, $id = -1)
 
 function insert_fields($table, $fields)
 {
-    echo "flag1";
+    //echo "flag1";
     global $Database;
-    echo "flagx";
+    //echo "flagx";
     if(!isset($Database))
 	return -1;
 
@@ -62,7 +62,7 @@ function insert_fields($table, $fields)
 	if($bool)
 
 	{
-        echo "flag3";
+        //echo "flag3";
 		$string_key .= ",";
 		$string_value .= ",";
             }
@@ -70,10 +70,10 @@ function insert_fields($table, $fields)
 	$string_value .= "'" . $Database->real_escape_string($v) . "'";
 	$bool = true;
     }
-    echo "INSERT INTO $table ($string_key) VALUES ($string_value)";
+    //echo "INSERT INTO $table ($string_key) VALUES ($string_value)";
     if($result = $Database->query("INSERT INTO $table ($string_key) VALUES ($string_value)"))
     {
-    echo "flag4";
+    //echo "flag4";
 	return (mysqli_insert_id($Database));
     }
     else

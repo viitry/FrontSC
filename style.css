@@ -114,19 +114,24 @@ body{
 
 }
 .container{
-    padding-top: 5%;
+    margin: 2% auto;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 75%;
     height: auto;
     /*background-color: red;*/
     justify-content: center;
+    border-top: solid;
+    border-width: 1px;
 }
 .container p{
     font-size: 20px;
 }
 .children{
-    height: 50%;
+    display: flex;
+    flex-direction: row;
+    margin: 5% auto;
+    justify-content: center;
 }
 
 .left{
@@ -136,14 +141,19 @@ body{
    /* background-color: green;*/
 }
 .right{
+    padding-top: 3%;
+    margin-top: 1%;
+    border-top: solid;
+    border-width: 1px;
+    text-align: center;
     width:30%;
    /* background-color: blue;*/
 }
 
 
 .right img{
-    margin-left: 25%;
-    width: 40%;
+    margin-left: 40%;
+    height: 50px;
 }
 
 

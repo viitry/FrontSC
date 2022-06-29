@@ -15,20 +15,6 @@ $var_phone = "";
 $var_login = "";
 $new_tab = select_fields("user");
 
-//$app = new_select_fields("name", "app");
-/*while(($v = $app->fetch_aray()) != NULL){
-    //print_r($v);
-    echo($v['name']);
-}*/
-/*$app = select_fields("app");
-foreach($app as $v){
-    var_dump($v['name'][0]);
-
-}*/
-
-
-
-//$response->closeCursor();
 
 if (isset($_POST['add_user'])) {
     $hash_key = hash_hmac('md5',htmlentities($_POST['password']), 'secret');
@@ -110,7 +96,7 @@ if(isset($_POST['logout']))
                     { ?>
             <h2>Adresse email : <?= $_COOKIE['mail'] ?> </h2>
             <?php } ?>
-            <h2>Mes applications desinstalees : <?php $response = $Database->query('SELECT name FROM app');
+            <h2>Mes applications : <?php $response = $Database->query('SELECT name FROM app');
 while($donnees = $response->fetch_array()){
     echo $donnees['name'].'<br/>';
 } ?></h2>

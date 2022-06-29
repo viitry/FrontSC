@@ -76,11 +76,12 @@ if(isset($_POST['connect'])){
                     <?php if(empty($_COOKIE["mail"]))
                     { ?>
                         <li><button id="show-login" href="#">Connexion</button></li>
-                        <li><button id="show-signup"href="#">Inscription</button></li>    
+                        <li><button id="show-signup"href="#">Inscription</button></li>     
                     <?php } ?>
-                        <li><a href="profile.php"><button>Mon Compte</button></li> 
+            
                     <?php if(isset($_COOKIE["mail"]) && isset($_COOKIE["password"]))
                     { ?>
+                    <li><a href="profile.php"><button>Mon Compte</button></li>
                         <form method="POST" action="<?=$_SERVER['REQUEST_URI']?>">
                             <li><button id="" href="#" name="logout">Se deconnecter</button></li> 
                         </ul>  
@@ -159,7 +160,7 @@ if(isset($_POST['connect'])){
                 </form>
             </div>
         </div>
-        <!-- nom, prenom, email, confirm email, mdp confirm mdp -->
+        <!-- Main -->
         <div class="main_up">
             <img class="screens" src="screens.png" alt="">
         </div>
@@ -168,13 +169,13 @@ if(isset($_POST['connect'])){
         </div>
         <div class="container">
             <div class="children left">
-                <p>SlashClean est un gestionnaire de disque dur pour votre telephone ! SlashClean vous permet de vous notifier lorsque vous n'avez pas utilise une application depuis longtemps et vous permet de la supprimer en un seul clic.</p>
+                <p>SlashClean est un gestionnaire de disque dur pour votre telephone !  <br>SlashClean vous permet de vous notifier lorsque vous n'avez pas utiliser une application depuis longtemps et vous permet de la supprimer en un seul clic.</p>
             </div>
-            <div class="children right">
-                <p>SlashClean en telechargement sur l'Appstore et GooglePlay !</p>
-                <img src="appstorebadge.png"><br>
-                <img src="google-play-badge.png"></div>
         </div>
+        <div class="children right">
+            <p>SlashClean en telechargement sur l'Appstore et GooglePlay !</p>
+            <img src="appstorebadge.png"><br>
+            <img src="google-play-badge.png"></div>
         <!-- Footer -->
         <footer class="footer">
             <div class="l-footer">
